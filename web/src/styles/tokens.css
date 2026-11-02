@@ -1,0 +1,62 @@
+/*
+  Direction (unslop by Damir Sokolovsky, @heydamir, CC BY 4.0)
+  Product   A desk for running @nexttab: reels about open-source tools, comment a keyword, get the repo by DM
+  Character exact, quick, a little nerdy
+  World     a developer's workbench: terminals, keyboards, repos at night. Graphite surfaces, amber phosphor
+  Moments   the reach line, the followers-online heatmap, real reel covers
+  Signature keycaps. Trigger keywords are keys, and the logo is a Tab key
+*/
+:root {
+  /* Graphite ramp */
+  --bg-deep: #0f0f10;
+  --bg: #141415;
+  --card: #19191b;
+  --raised: #232325;
+  --raised-2: #2b2b2e;
+  --line: rgba(237, 237, 237, 0.08);
+  --line-strong: rgba(237, 237, 237, 0.14);
+
+  --text: #ededed;
+  --text-2: #a1a1a6;
+  --text-3: #85858b;
+
+  /* One accent: amber phosphor */
+  --accent: #f5a524;
+  --accent-ink: #1c1405;
+  --accent-soft: rgba(245, 165, 36, 0.14);
+  --accent-line: rgba(245, 165, 36, 0.4);
+
+  /* Meaning only */
+  --positive: #4cc38a;
+  --negative: #e5484d;
+  --warning: #e0a43b;
+
+  /* Type */
+  --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
+
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-20: 20px;
+  --fs-28: 28px;
+  --fs-32: 32px;
+
+  /* Radius */
+  --r-4: 4px;
+  --r-6: 6px;
+  --r-8: 8px;
+  --r-10: 10px;
+  --r-14: 14px;
+  --r-16: 16px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 140ms;
+  --t-menu: 200ms;
+  --t-enter: 380ms;
+
+  --highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --sidebar: 248px;
+}
