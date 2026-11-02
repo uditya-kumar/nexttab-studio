@@ -398,7 +398,7 @@ function Audience() {
   const gTotal = gender.reduce((a, x) => a + x.value, 0) || 1;
   const order = ["male", "unknown", "female"];
   const genderSorted = [...gender].sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
-  const colors = ["var(--accent)", "var(--text-2)", "var(--raised-2)"];
+  const colors = ["var(--accent-fill)", "var(--data-mid)", "var(--raised-2)"];
 
   return (
     <>

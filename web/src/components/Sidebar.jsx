@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import {
   ChartLine,
+  Moon,
+  Sun,
   Clapperboard,
   Inbox,
   LayoutDashboard,
@@ -12,6 +14,7 @@ import {
 import { useAccount } from "../lib/account.jsx";
 import { useAutomations } from "../lib/queries.js";
 import { num } from "../lib/format.js";
+import { useTheme } from "../lib/theme.js";
 import { Avatar, ICON } from "./ui.jsx";
 
 export default function Sidebar() {
@@ -83,6 +86,7 @@ export default function Sidebar() {
             </span>
           </a>
         )}
+        <ThemeToggle />
       </div>
     </nav>
   );
@@ -95,5 +99,21 @@ function Item({ to, icon: Icon, children, count, end }) {
       <span>{children}</span>
       {count && <span className="count">{count}</span>}
     </NavLink>
+  );
+}
+
+function ThemeToggle() {
+  const [theme, setTheme] = useTheme();
+  return (
+    <div className="theme-toggle" role="group" aria-label="Theme">
+      {[
+        ["light", "Light", Sun],
+        ["dark", "Dark", Moon],
+      ].map(([value, label, Icon]) => (
+        <button key={value} type="button" aria-pressed={theme === value} onClick={() => setTheme(value)}>
+          <Icon size={14} strokeWidth={1.5} /> {label}
+        </button>
+      ))}
+    </div>
   );
 }

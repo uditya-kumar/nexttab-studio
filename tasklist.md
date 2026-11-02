@@ -55,6 +55,14 @@
 - [x] Overview top posts with covers and compact views
 - [x] Build in React and check in Chrome against a 20-automation mock
 
+## Theme
+
+- [x] Palette from linearDesignSystem.md / designToken.md (colors only), in code and Pencil
+- [x] Light mode derived from the same palette, Light/Dark toggle under the account chip, no-flash load
+- [x] Accent split: --accent (lime fills), --accent-fg (text, thin lines), --accent-fill (data), --chart-line
+- [x] Depth per unslop tokens: dark top highlight + hairlines, light small soft shadows, flat keycaps
+- [ ] Light mode variant of the screens in Pencil
+
 ## Next
 
 - [ ] Add ZERNIO_API_KEY to .env and run the live smoke test

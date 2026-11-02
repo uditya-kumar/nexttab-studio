@@ -95,8 +95,8 @@ export function LineChart({ data, compare, height = 300, label = "Value", compar
         <svg height={height} onMouseMove={onMove} onMouseLeave={() => setHover(null)} role="img" aria-label={`${label} by day`}>
           <defs>
             <linearGradient id="area-fade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.16" />
-              <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+              <stop offset="0%" stopColor="var(--accent-fill)" style={{ stopOpacity: "var(--area-top)" }} />
+              <stop offset="100%" stopColor="var(--accent-fill)" stopOpacity="0" />
             </linearGradient>
           </defs>
           <g transform={`translate(${pad.left},${pad.top})`}>
@@ -119,11 +119,11 @@ export function LineChart({ data, compare, height = 300, label = "Value", compar
               <path d={smoothPath(cmp)} fill="none" stroke="var(--text-3)" strokeWidth="1.5" strokeDasharray="3 4" opacity="0.7" />
             )}
             <path d={area} fill="url(#area-fade)" />
-            <path d={line} fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+            <path d={line} fill="none" stroke="var(--chart-line)" style={{ strokeWidth: "var(--chart-width)" }} strokeLinejoin="round" strokeLinecap="round" />
             {hover !== null && pts[hover] && (
               <g>
                 <line x1={pts[hover][0]} x2={pts[hover][0]} y1={0} y2={h} stroke="var(--line-strong)" />
-                <circle cx={pts[hover][0]} cy={pts[hover][1]} r="4" fill="var(--bg)" stroke="var(--accent)" strokeWidth="2" />
+                <circle cx={pts[hover][0]} cy={pts[hover][1]} r="4" fill="var(--card)" stroke="var(--chart-line)" strokeWidth="2" />
               </g>
             )}
           </g>
@@ -175,10 +175,10 @@ function heatColor(v, lo, hi) {
   if (!v) return "var(--raised)";
   if (v < 1) {
     const t = lo < 1 ? (v - lo) / (1 - lo) : 1;
-    return `rgba(237, 237, 237, ${(0.04 + 0.08 * t).toFixed(3)})`;
+    return `color-mix(in srgb, var(--heat-lo) ${(4 + 8 * t).toFixed(1)}%, transparent)`;
   }
   const t = hi > 1 ? Math.pow((v - 1) / (hi - 1), 1.6) : 1;
-  return `rgba(245, 165, 36, ${(0.18 + 0.82 * t).toFixed(3)})`;
+  return `color-mix(in srgb, var(--heat-hi) ${(18 + 82 * t).toFixed(1)}%, transparent)`;
 }
 
 const relative = (v) => {

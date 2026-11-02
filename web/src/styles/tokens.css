@@ -2,35 +2,104 @@
   Direction (unslop by Damir Sokolovsky, @heydamir, CC BY 4.0)
   Product   A desk for running @nexttab: reels about open-source tools, comment a keyword, get the repo by DM
   Character exact, quick, a little nerdy
-  World     a developer's workbench: terminals, keyboards, repos at night. Graphite surfaces, amber phosphor
+  World     a developer's workbench: terminals, keyboards, repos at night
+  Palette   colors from linearDesignSystem.md: Void/Carbon/Obsidian surfaces, Acid Lime accent
   Moments   the reach line, the followers-online heatmap, real reel covers
-  Signature keycaps. Trigger keywords are keys, and the logo is a Tab key
+  Signature keycaps. Trigger keywords are keys, and the logo is the wordmark
 */
-:root {
-  /* Graphite ramp */
-  --bg-deep: #0f0f10;
-  --bg: #141415;
-  --card: #19191b;
-  --raised: #232325;
-  --raised-2: #2b2b2e;
-  --line: rgba(237, 237, 237, 0.08);
-  --line-strong: rgba(237, 237, 237, 0.14);
+/* Colors come from linearDesignSystem.md / designToken.md. The file is dark only; light mode inverts the same
+   palette (Paper cards, Bone hairlines, Void text). Acid Lime stays the fill for actions, and
+   --accent-fg is the accent for text and thin lines (Void on light, where thin lime cannot be read),
+   --accent-fill is the accent for filled data shapes (lime in both themes). */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-deep: #08090a;
+  --bg: #08090a;
+  --card: #0f1011;
+  --raised: #161718;
+  --raised-2: #23252a;
+  --line: #23252a;
+  --line-strong: #383b3f;
 
-  --text: #ededed;
-  --text-2: #a1a1a6;
-  --text-3: #85858b;
+  --text: #ffffff;
+  --text-2: #d0d6e0;
+  --text-3: #8a8f98;
 
-  /* One accent: amber phosphor */
-  --accent: #f5a524;
-  --accent-ink: #1c1405;
-  --accent-soft: rgba(245, 165, 36, 0.14);
-  --accent-line: rgba(245, 165, 36, 0.4);
+  --accent: #e4f222;
+  --accent-ink: #08090a;
+  --accent-fg: #e4f222;
+  --accent-fill: #e4f222;
+  --chart-line: #e4f222;
+  --data-muted: #8a8f98;
+  --data-mid: #d0d6e0;
+  --chart-width: 2;
+  --area-top: 0.16;
+  --accent-soft: rgba(228, 242, 34, 0.12);
+  --accent-line: rgba(228, 242, 34, 0.45);
 
-  /* Meaning only */
-  --positive: #4cc38a;
-  --negative: #e5484d;
+  --positive: #27a644;
+  --negative: #eb5757;
   --warning: #e0a43b;
 
+  --hover: rgba(255, 255, 255, 0.03);
+  --primary-hover: #e5e5e6;
+  --heat-lo: #e5e5e6;
+  --heat-hi: #e4f222;
+  --overlay: rgba(8, 9, 10, 0.6);
+  /* unslop depth, dark: surface steps and hairlines, a soft top highlight on buttons,
+     active rows and keycaps, and a soft neutral shadow only on floating layers */
+  --hairline: rgba(255, 255, 255, 0.08);
+  --highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --key-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-panel: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-deep: #f8f8f8;
+  --bg: #f8f8f8;
+  --card: #ffffff;
+  --raised: #f0f0f1;
+  --raised-2: #e5e5e6;
+  --line: #e5e5e6;
+  --line-strong: #d0d6e0;
+
+  --text: #08090a;
+  --text-2: #383b3f;
+  --text-3: #62666d;
+
+  --accent: #e4f222;
+  --accent-ink: #08090a;
+  --accent-fg: #08090a;
+  --accent-fill: #e4f222;
+  --chart-line: #a9b800;
+  --data-muted: #d0d6e0;
+  --data-mid: #8a8f98;
+  --chart-width: 2.5;
+  --area-top: 0.5;
+  --accent-soft: rgba(228, 242, 34, 0.45);
+  --accent-line: rgba(8, 9, 10, 0.35);
+
+  --positive: #1f8a37;
+  --negative: #d64545;
+  --warning: #b7791f;
+
+  --hover: rgba(8, 9, 10, 0.03);
+  --primary-hover: #23252a;
+  --heat-lo: #08090a;
+  --heat-hi: #d9e81a;
+  /* unslop depth, light: neutral, soft and small */
+  --hairline: rgba(8, 9, 10, 0.08);
+  --key-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --overlay: rgba(8, 9, 10, 0.25);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --highlight: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+:root {
   /* Type */
   --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
@@ -57,6 +126,5 @@
   --t-menu: 200ms;
   --t-enter: 380ms;
 
-  --highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   --sidebar: 248px;
 }

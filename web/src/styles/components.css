@@ -56,7 +56,7 @@
 }
 
 .nav a:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--hover);
   color: var(--text);
 }
 
@@ -67,7 +67,7 @@
 }
 
 .nav a.active svg {
-  color: var(--accent);
+  color: var(--accent-fg);
 }
 
 .nav .count {
@@ -246,7 +246,7 @@
 }
 
 .stat.lead .value {
-  color: var(--accent);
+  color: var(--accent-fg);
 }
 
 /* Buttons */
@@ -285,24 +285,25 @@
 
 .btn.primary {
   background: var(--text);
-  color: #141415;
+  color: var(--bg);
   border-color: transparent;
   box-shadow: none;
 }
 
 .btn.primary:hover {
-  background: #ffffff;
+  background: var(--primary-hover);
 }
 
 .btn.accent {
   background: var(--accent);
   color: var(--accent-ink);
   border-color: transparent;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: var(--highlight);
 }
 
 .btn.accent:hover {
-  background: #ffb43d;
+  background: var(--accent);
+  filter: brightness(1.08);
 }
 
 .btn.ghost {
@@ -322,7 +323,7 @@
 }
 
 .btn.danger:hover {
-  background: rgba(229, 72, 77, 0.1);
+  background: rgba(235, 87, 87, 0.1);
 }
 
 .btn.sm {
@@ -418,7 +419,7 @@
   bottom: -1px;
   height: 2px;
   border-radius: 2px;
-  background: var(--accent);
+  background: var(--accent-fg);
 }
 
 .tabs .count {
@@ -436,8 +437,8 @@
   padding: 0 8px;
   border-radius: var(--r-6);
   background: var(--raised-2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--key-shadow);
   font-family: var(--mono);
   font-size: var(--fs-12);
   font-weight: 500;
@@ -447,7 +448,7 @@
 }
 
 .key.lit {
-  color: var(--accent);
+  color: var(--accent-fg);
 }
 
 .key.sm {
@@ -719,7 +720,7 @@
 }
 
 .table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--hover);
 }
 
 /* Media */
@@ -854,13 +855,13 @@
 .barlist .fill {
   height: 100%;
   border-radius: 2px;
-  background: var(--text-3);
+  background: var(--data-muted);
   transform-origin: left;
   animation: grow var(--t-enter) var(--ease) both;
 }
 
 .barlist .item:first-child .fill {
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 @keyframes grow {
@@ -878,7 +879,7 @@
 
 .meter > div {
   height: 100%;
-  background: var(--accent);
+  background: var(--accent-fill);
   border-radius: 3px;
 }
 
@@ -891,11 +892,11 @@
 }
 
 .stack > div:nth-child(1) {
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .stack > div:nth-child(2) {
-  background: var(--text-2);
+  background: var(--data-mid);
 }
 
 .stack > div:nth-child(3) {
@@ -954,7 +955,7 @@
   border-radius: var(--r-8);
   background: var(--raised);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-float);
   white-space: nowrap;
   transform: translateX(-50%);
   transition: left 80ms linear;
@@ -1058,19 +1059,19 @@
 .bar {
   width: 100%;
   border-radius: 4px 4px 0 0;
-  background: rgba(133, 133, 139, 0.35);
+  background: rgba(138, 143, 152, 0.35);
   transform-origin: bottom;
   animation: grow-y var(--t-enter) var(--ease) both;
   transition: background-color var(--t-fast) var(--ease);
 }
 
 .bar-col:hover .bar {
-  background: rgba(133, 133, 139, 0.6);
+  background: rgba(138, 143, 152, 0.6);
 }
 
 .bar.lit,
 .bar-col:hover .bar.lit {
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 @keyframes grow-y {
@@ -1105,7 +1106,7 @@
 }
 
 .notice.error {
-  border-color: rgba(229, 72, 77, 0.3);
+  border-color: rgba(235, 87, 87, 0.3);
 }
 
 .notice.error svg {
@@ -1153,7 +1154,7 @@
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgba(8, 8, 9, 0.6);
+  background: var(--overlay);
   animation: fade var(--t-menu) var(--ease) both;
 }
 
@@ -1211,7 +1212,7 @@
   border-radius: var(--r-16);
   background: var(--card);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-panel);
   animation: pop var(--t-menu) var(--ease) both;
 }
 
@@ -1255,7 +1256,7 @@
   border-radius: var(--r-10);
   background: var(--raised);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-float);
   animation: rise var(--t-menu) var(--ease) both;
 }
 
@@ -1296,4 +1297,48 @@
   .form-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Theme toggle in the sidebar foot */
+.theme-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--r-10);
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+}
+
+.theme-toggle button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--r-8);
+  background: transparent;
+  color: var(--text-3);
+  font-size: var(--fs-13);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+
+.theme-toggle button:hover {
+  color: var(--text);
+}
+
+.theme-toggle button[aria-pressed="true"] {
+  background: var(--raised);
+  color: var(--text);
+  box-shadow: var(--highlight);
+}
+
+/* Light theme: thin lime text is unreadable on white, so lit keys become lime chips */
+[data-theme="light"] .key.lit {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+  box-shadow: var(--key-shadow);
 }
