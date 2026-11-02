@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { CircleAlert, LoaderCircle, RefreshCw, X } from "lucide-react";
 import { change, initials, num } from "../lib/format.js";
 
@@ -153,7 +154,8 @@ export function Drawer({ title, onClose, children, actions }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
-  return (
+  // Rendered at the document root so no transformed ancestor can trap the fixed position.
+  return createPortal(
     <>
       <div className="overlay" onClick={onClose} />
       <aside className="drawer" role="dialog" aria-label={typeof title === "string" ? title : undefined}>
@@ -168,7 +170,8 @@ export function Drawer({ title, onClose, children, actions }) {
         </div>
         <div className="drawer-body">{children}</div>
       </aside>
-    </>
+    </>,
+    document.body,
   );
 }
 
@@ -178,7 +181,7 @@ export function Confirm({ title, body, confirmLabel = "Confirm", danger, busy, o
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onCancel]);
-  return (
+  return createPortal(
     <>
       <div className="overlay" onClick={onCancel} />
       <div className="dialog" role="alertdialog" aria-label={title}>
@@ -194,7 +197,8 @@ export function Confirm({ title, body, confirmLabel = "Confirm", danger, busy, o
           </button>
         </div>
       </div>
-    </>
+    </>,
+    document.body,
   );
 }
 

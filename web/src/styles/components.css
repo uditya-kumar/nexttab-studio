@@ -26,18 +26,6 @@
   font-weight: 500;
 }
 
-.brand-key {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 26px;
-  border-radius: var(--r-6);
-  background: var(--raised-2);
-  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  color: var(--accent);
-}
-
 .nav-label {
   margin: 24px 8px 8px;
   font-size: var(--fs-12);
@@ -130,7 +118,8 @@
   max-width: 1520px;
   padding: 28px 32px 64px;
   margin: 0 auto;
-  animation: rise var(--t-enter) var(--ease) both;
+  /* backwards, not both: a held transform would trap position: fixed children */
+  animation: rise var(--t-enter) var(--ease) backwards;
 }
 
 @keyframes rise {

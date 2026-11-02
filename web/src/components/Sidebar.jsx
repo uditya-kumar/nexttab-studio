@@ -14,22 +14,6 @@ import { useAutomations } from "../lib/queries.js";
 import { num } from "../lib/format.js";
 import { Avatar, ICON } from "./ui.jsx";
 
-export function TabMark() {
-  return (
-    <span className="brand-key" aria-hidden="true">
-      <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-        <path
-          d="M2 7h10m0 0L8.5 3.5M12 7l-3.5 3.5M15.5 2.5v9"
-          stroke="currentColor"
-          strokeWidth="1.75"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
-  );
-}
-
 export default function Sidebar() {
   const { account, hasKey } = useAccount();
   const automations = useAutomations(hasKey);
@@ -38,7 +22,6 @@ export default function Sidebar() {
   return (
     <nav className="sidebar" aria-label="Main">
       <div className="brand">
-        <TabMark />
         <span>Nexttab Studio</span>
       </div>
 

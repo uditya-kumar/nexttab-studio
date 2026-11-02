@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
-import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUp, ArrowUpRight, Download } from "lucide-react";
 import { useAccount } from "../lib/account.jsx";
 import { useBestTimes, useDemographics, useInsights, useOnlineFollowers, usePostTimeline, usePublished } from "../lib/queries.js";
 import { WEEKDAYS, country, dateLong, dateShort, dateTime, num, pct, rangeFor, seconds, tz } from "../lib/format.js";
 import { KIND_LABEL, postTitle } from "../lib/posts.js";
+import { downloadCsv } from "../lib/csv.js";
 import { BarList, Bars, Heatmap, LineChart } from "../components/charts.jsx";
 import { Drawer, Empty, ErrorNotice, Key, PageHead, Segmented, Skeleton, Thumb } from "../components/ui.jsx";
 
@@ -90,7 +91,7 @@ export default function Analytics() {
       </div>
 
       <div className="section" style={{ marginTop: 16 }}>
-        <PostTable posts={posts} loading={published.isLoading} error={published.error} />
+        <PostTable posts={posts} loading={published.isLoading} error={published.error} range={r} />
       </div>
 
       <div className="grid main-side equal-row" style={{ marginTop: 16 }}>
@@ -133,7 +134,24 @@ function ByDay({ posts, loading }) {
   );
 }
 
-function PostTable({ posts, loading, error }) {
+// Raw values, so spreadsheets can sort and sum them. Rates are percentages, watch time is seconds.
+const CSV_COLUMNS = [
+  { label: "Caption", value: (p) => p.caption },
+  { label: "Type", value: (p) => KIND_LABEL[p.kind] },
+  { label: "Published", value: (p) => p.publishedAt?.slice(0, 10) },
+  { label: "URL", value: (p) => p.url },
+  { label: "Views", value: (p) => p.metrics.views },
+  { label: "Reach", value: (p) => p.metrics.reach },
+  { label: "Likes", value: (p) => p.metrics.likes },
+  { label: "Comments", value: (p) => p.metrics.comments },
+  { label: "Saves", value: (p) => p.metrics.saves },
+  { label: "Shares", value: (p) => p.metrics.shares },
+  { label: "Avg watch (s)", value: (p) => (p.metrics.avgWatchMs === null ? null : (p.metrics.avgWatchMs / 1000).toFixed(1)) },
+  { label: "Skip rate (%)", value: (p) => p.metrics.skipRate },
+  { label: "Engagement rate (%)", value: (p) => p.metrics.engagementRate },
+];
+
+function PostTable({ posts, loading, error, range }) {
   const [sort, setSort] = useState({ key: "views", dir: "desc" });
   const [open, setOpen] = useState(null);
   const sorted = useMemo(() => {
@@ -158,7 +176,16 @@ function PostTable({ posts, loading, error }) {
     <div className="card flush">
       <div className="card-head" style={{ padding: "16px 20px", margin: 0 }}>
         <h2>Post performance</h2>
-        <span className="mono muted">Click a row for its daily curve</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <span className="mono muted">Click a row for its daily curve</span>
+          <button
+            className="btn sm"
+            disabled={!posts.length}
+            onClick={() => downloadCsv(`nexttab-posts-${range.from}-to-${range.to}.csv`, CSV_COLUMNS, sorted)}
+          >
+            <Download size={14} strokeWidth={1.5} /> Export CSV
+          </button>
+        </div>
       </div>
       {error ? (
         <div style={{ padding: 20 }}>
